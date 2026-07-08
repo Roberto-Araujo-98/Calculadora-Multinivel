@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gradient-to-br from-slate-950 via-black to-slate-900 min-h-screen flex items-center justify-center p-4">
 
-    <div class="menu-container w-full max-w-[440px] bg-slate-900/90 rounded-2xl p-6 border border-blue-500/30 shadow-[0_0_35px_rgba(30,58,138,0.3)] text-center">
+    <div id="calc-card" class="w-full max-w-[490px] bg-slate-900/90 rounded-2xl p-5 border border-blue-500/30 shadow-[0_0_30px_rgba(30,58,138,0.4)] transition-all">
         
         <!-- Encabezado con la Intro Cyberpunk -->
         <header class="mb-6">
@@ -69,6 +69,39 @@
             Core Engine &copy; 2026
         </footer>
     </div>
+<script>
+        function aplicarOverclockGlobal() {
+            const isOverclock = localStorage.getItem("overclock") === "true";
+            const card = document.getElementById("calc-card");
+            const body = document.body;
 
+            if (!card) return;
+
+            if (isOverclock) {
+                // 1. Fondo de pantalla en modo sobrecarga
+                body.style.backgroundImage = "linear-gradient(to bottom right, #0a0a0a, #000000, #170509)";
+                
+                // 2. Aura Neón Roja en la tarjeta del Portal
+                card.style.borderColor = "rgba(244, 63, 94, 0.45)"; // rose-500
+                card.style.boxShadow = "0 0 35px rgba(225, 29, 72, 0.5)"; // rose-600
+                
+                // 3. Mutar los detalles y recuadros azules a ámbar/fuego
+                document.querySelectorAll(".text-blue-400").forEach(el => {
+                    el.style.color = "#f59e0b"; // amber-500
+                });
+            } else {
+                // Restablecer estilos originales si el Overclock está apagado
+                body.style.backgroundImage = "";
+                card.style.borderColor = "";
+                card.style.boxShadow = "";
+                document.querySelectorAll(".text-blue-400").forEach(el => {
+                    el.style.color = "";
+                });
+            }
+        }
+
+        // Ejecutar al cargar el portal
+        window.addEventListener("DOMContentLoaded", aplicarOverclockGlobal);
+    </script>
 </body>
 </html>

@@ -90,3 +90,90 @@ function calcular() {
         display.textContent = "Error";
     }
 }
+
+/* --- ⚡ RECEPTOR UNIVERSAL DE OVERCLOCK --- */
+function aplicarOverclockGlobal() {
+    const isOverclock = localStorage.getItem("overclock") === "true";
+    const card = document.getElementById("calc-card");
+    const body = document.body;
+
+    if (!card) return; // Si no encuentra la tarjeta, no hace nada
+
+    if (isOverclock) {
+        // 1. Forzar fondo de pantalla en modo crítico
+        body.style.backgroundImage = "linear-gradient(to bottom right, #0a0a0a, #000000, #170509)";
+        
+        // 2. Inyectar el Súper Neón Rojo Carmesí en la tarjeta
+        card.style.borderColor = "rgba(244, 63, 94, 0.5)"; // rose-500
+        card.style.boxShadow = "0 0 35px rgba(225, 29, 72, 0.5)"; // rose-600 shadow
+        
+        // 3. Mutar los textos y botones verdes/esmeralda a naranja/ámbar de advertencia
+        document.querySelectorAll(".text-emerald-400, .text-green-400").forEach(el => {
+            el.style.color = "#f59e0b"; // amber-500
+        });
+        document.querySelectorAll(".bg-emerald-600, .bg-green-600").forEach(el => {
+            el.style.backgroundColor = "#dc2626"; // red-600
+        });
+    } else {
+        // Restablecer estilos originales limpiando los estilos en línea
+        body.style.backgroundImage = "";
+        card.style.borderColor = "";
+        card.style.boxShadow = "";
+        document.querySelectorAll(".text-emerald-400, .text-green-400").forEach(el => {
+            el.style.color = "";
+        });
+        document.querySelectorAll(".bg-emerald-600, .bg-green-600").forEach(el => {
+            el.style.backgroundColor = "";
+        });
+    }
+}
+
+// Ejecutar apenas cargue la página
+window.addEventListener("DOMContentLoaded", aplicarOverclockGlobal);
+
+/* --- ⚡ RECEPTOR UNIVERSAL DE OVERCLOCK PREMIUM --- */
+function aplicarOverclockGlobal() {
+    const isOverclock = localStorage.getItem("overclock") === "true";
+    const card = document.getElementById("calc-card");
+    const activePill = document.getElementById("nav-active-pill");
+    const body = document.body;
+
+    if (!card) return;
+
+    if (isOverclock) {
+        // 1. Fondo de pantalla en modo crítico/sobrecarga
+        body.style.backgroundImage = "linear-gradient(to bottom right, #0a0a0a, #000000, #170509)";
+        
+        // 2. Aplicar Súper Neón Rojo a la tarjeta externa
+        card.style.borderColor = "rgba(244, 63, 94, 0.45)"; // rose-500
+        card.style.boxShadow = "0 0 35px rgba(225, 29, 72, 0.5)"; // rose-600
+        
+        // 3. Mutar el botón de navegación activo de azul a Rojo Overclock
+        if (activePill) {
+            activePill.style.backgroundColor = "#e11d48"; // rose-600
+            activePill.style.boxShadow = "0 0 12px rgba(225, 29, 72, 0.6)";
+        }
+        
+        // 4. Cambiar textos o indicadores verdes a naranja/ámbar de advertencia
+        document.querySelectorAll(".text-emerald-400, .text-green-400").forEach(el => {
+            el.style.color = "#f59e0b"; // amber-500
+        });
+    } else {
+        // Restablecer absolutamente todo a los colores Cyberpunk originales
+        body.style.backgroundImage = "";
+        card.style.borderColor = "";
+        card.style.boxShadow = "";
+        
+        if (activePill) {
+            activePill.style.backgroundColor = ""; // Regresa a su bg-blue original de Tailwind
+            activePill.style.boxShadow = "";
+        }
+        
+        document.querySelectorAll(".text-emerald-400, .text-green-400").forEach(el => {
+            el.style.color = "";
+        });
+    }
+}
+
+// Escuchar cambios automáticos al cargar la página
+window.addEventListener("DOMContentLoaded", aplicarOverclockGlobal);
