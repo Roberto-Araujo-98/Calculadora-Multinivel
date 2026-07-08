@@ -128,8 +128,7 @@ function aplicarOverclockGlobal() {
     }
 }
 
-// Ejecutar apenas cargue la página
-window.addEventListener("DOMContentLoaded", aplicarOverclockGlobal);
+
 
 /* --- ⚡ RECEPTOR UNIVERSAL DE OVERCLOCK PREMIUM --- */
 function aplicarOverclockGlobal() {
