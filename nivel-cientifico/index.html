@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Rok - Científico</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-black to-slate-900 min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-[400px] bg-slate-900/90 rounded-2xl p-5 border border-blue-500/30 shadow-[0_0_30px_rgba(30,58,138,0.4)] transition-all">
+        
+        <!-- Barra de Navegación Modular (Cyberpunk Pills) -->
+        <nav class="flex justify-around bg-black/50 rounded-xl p-1.5 mb-5 border border-slate-800">
+            <a href="../" class="text-slate-400 hover:text-blue-400 text-xs font-medium px-3 py-1.5 rounded-lg transition-all">Inicio</a>
+            <a href="../nivel-basico/" class="text-slate-400 hover:text-blue-400 text-xs font-medium px-3 py-1.5 rounded-lg transition-all">Básico</a>
+            <a href="../nivel-avanzado/" class="text-slate-400 hover:text-blue-400 text-xs font-medium px-3 py-1.5 rounded-lg transition-all">Avanzado</a>
+            <a href="#" class="bg-blue-600 text-white text-xs font-semibold px-4 py-1.5 rounded-lg shadow-[0_0_10px_rgba(37,99,235,0.5)]">Científico</a>
+        </nav>
+
+        <!-- Selector de Magnitud Física (Categorías) -->
+        <div class="mb-4">
+            <label class="block text-blue-500/80 text-[10px] font-mono tracking-widest uppercase mb-1.5">Magnitud Física</label>
+            <select id="category-select" class="w-full bg-black/80 border border-slate-800 text-white text-sm font-mono rounded-xl p-3 outline-none focus:border-blue-500/50 transition-all cursor-pointer">
+                <option value="longitud">📏 Longitud</option>
+                <option value="masa">⚖️ Masa / Peso</option>
+                <option value="volumen">🧪 Volumen</option>
+                <option value="temperatura">🌡️ Temperatura</option>
+            </select>
+        </div>
+
+        <!-- Pantalla de Entrada (Origen) -->
+        <div class="bg-black/60 rounded-xl p-3 mb-2 border border-slate-800/80 flex items-center justify-between">
+            <select id="unit-from" class="bg-transparent text-blue-400 text-xs font-mono font-semibold outline-none w-28 cursor-pointer"></select>
+            <div id="display-input" class="text-white text-2xl font-light font-mono tracking-tight truncate ml-2 text-right flex-grow">0</div>
+        </div>
+
+        <!-- Pantalla de Salida (Destino - Respuesta Automática) -->
+        <div class="bg-black/80 rounded-xl p-3 mb-5 border border-blue-500/20 shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)] flex items-center justify-between">
+            <select id="unit-to" class="bg-transparent text-emerald-400 text-xs font-mono font-semibold outline-none w-28 cursor-pointer"></select>
+            <div id="display-output" class="text-emerald-400 text-2xl font-semibold font-mono tracking-tight truncate ml-2 text-right flex-grow">0</div>
+        </div>
+
+        <!-- Rejilla de Control Numérico de 4 Columnas -->
+        <div class="grid grid-cols-4 gap-2 auto-rows-[48px] md:auto-rows-[54px]">
+            <button class="btn text-rose-400 bg-rose-950/20 border border-rose-900/50 hover:bg-rose-900/40 rounded-lg text-sm font-semibold transition-all" data-key="C">C</button>
+            <button class="btn text-amber-400 bg-amber-950/20 border border-amber-900/50 hover:bg-amber-900/40 rounded-lg text-sm transition-all" data-key="Backspace">⌫</button>
+            <button class="btn text-slate-400 bg-slate-800/20 border border-slate-800 rounded-lg text-sm transition-all" data-key="+/-">+/-</button>
+            
+            <!-- Celda de Identidad Fox integrada de forma simétrica -->
+            <div class="row-span-2 bg-black/40 border border-slate-800 rounded-lg overflow-hidden p-0.5 flex items-center justify-center">
+                <img src="../nivel-basico/fox.jpg" alt="Rok Brand" class="w-full h-full object-cover rounded-md">
+            </div>
+
+            <!-- Números Fila 1 -->
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="7">7</button>
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="8">8</button>
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="9">9</button>
+
+            <!-- Números Fila 2 -->
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="4">4</button>
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="5">5</button>
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="6">6</button>
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="1">1</button>
+
+            <!-- Fila Final -->
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="2">2</button>
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="3">3</button>
+            <button class="btn num text-white bg-slate-800 hover:bg-slate-700 border border-slate-700/40 rounded-lg text-lg font-semibold transition-all" data-key="0">0</button>
+            <button class="btn text-slate-300 bg-slate-800/40 border border-slate-700/50 hover:bg-slate-750 rounded-lg text-lg transition-all" data-key=".">.</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
